@@ -80,4 +80,14 @@ namespace RecipeApplication
             }
         }
 
+        public void ScaleRecipe(double factor)
+        {
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.Quantity *= factor;
+            }
+
+            Console.WriteLine("Recipe scaled successfully.");
+        }
+
         
