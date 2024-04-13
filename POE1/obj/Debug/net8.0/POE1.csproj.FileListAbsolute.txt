@@ -1,0 +1,14 @@
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\bin\Debug\net8.0\POE1.exe
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\bin\Debug\net8.0\POE1.deps.json
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\bin\Debug\net8.0\POE1.runtimeconfig.json
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\bin\Debug\net8.0\POE1.dll
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\bin\Debug\net8.0\POE1.pdb
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.AssemblyInfoInputs.cache
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.AssemblyInfo.cs
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.csproj.CoreCompileInputs.cache
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.dll
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\refint\POE1.dll
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.pdb
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\POE1.genruntimeconfig.cache
+C:\Users\HP\OneDrive\Documents\Desktop\POE1\obj\Debug\net8.0\ref\POE1.dll
