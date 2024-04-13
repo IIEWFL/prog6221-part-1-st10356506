@@ -134,7 +134,34 @@ namespace RecipeApplication
                         {
                             Console.WriteLine("No recipe to display.");
                         }
-                       
+                        else
+                        {
+                            recipe.DisplayRecipe();
+                        }
+                        break;
+                    case "3":
+                        Console.Write("Enter scaling factor: ");
+                        double factor = double.Parse(Console.ReadLine());
+                        recipe.ScaleRecipe(factor);
+                        break;
+                    case "4":
+                        recipe.ResetQuantities();
+                        break;
+                    case "5":
+                        recipe.ClearRecipe();
+                        break;
+                    case "6":
+                        Console.WriteLine("Happy cooking!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option. Please select from options 1-6.");
+                        break;
+                }
+            } while (true);
+        }
+    }
+}
+
 
 
 
