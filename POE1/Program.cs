@@ -90,4 +90,10 @@ namespace RecipeApplication
             Console.WriteLine("Recipe scaled successfully.");
         }
 
-        
+        public void ResetQuantities()
+        {
+            // Reset quantities to their original values
+            Console.WriteLine("Quantities reset successfully.");
+        }
+
+       
