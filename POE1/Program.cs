@@ -96,4 +96,12 @@ namespace RecipeApplication
             Console.WriteLine("Quantities reset successfully.");
         }
 
-       
+        public void ClearRecipe()
+        {
+            ingredients = new Ingredient[0];
+            steps = new RecipeStep[0];
+            Console.WriteLine("Recipe cleared successfully.");
+        }
+    }
+
+    
