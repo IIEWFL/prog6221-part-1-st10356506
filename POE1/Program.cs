@@ -64,5 +64,20 @@ namespace RecipeApplication
             Console.WriteLine("Recipe created successfully.");
         }
 
-     
+        public void DisplayRecipe()
+        {
+            Console.WriteLine("\nRecipe details:");
+            Console.WriteLine("Ingredients:");
+            foreach (var ingredient in ingredients)
+            {
+                Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");
+            }
 
+            Console.WriteLine("\nSteps:");
+            for (int i = 0; i < steps.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {steps[i].Steps}");
+            }
+        }
+
+        
