@@ -51,4 +51,18 @@ namespace RecipeApplication
                 ingredients[i] = new Ingredient { Name = name, Quantity = quantity, Unit = unit };
             }
 
-           
+            Console.Write("Enter number of steps: ");
+            int stepCount = int.Parse(Console.ReadLine());
+            steps = new RecipeStep[stepCount];
+            for (int i = 0; i < stepCount; i++)
+            {
+                Console.Write($"Enter step {i + 1}: ");
+                string step = Console.ReadLine();
+                steps[i] = new RecipeStep { Steps = step };
+            }
+
+            Console.WriteLine("Recipe created successfully.");
+        }
+
+     
+
