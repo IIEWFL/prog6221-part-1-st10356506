@@ -122,4 +122,19 @@ namespace RecipeApplication
                 Console.WriteLine("(5) Clear recipe");
                 Console.WriteLine("(6) Quit");
 
-               
+                string option = Console.ReadLine();
+
+                switch (option)
+                {
+                    case "1":
+                        recipe.CreateRecipe();
+                        break;
+                    case "2":
+                        if (recipe == null)
+                        {
+                            Console.WriteLine("No recipe to display.");
+                        }
+                       
+
+
+
