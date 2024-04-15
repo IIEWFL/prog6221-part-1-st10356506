@@ -12,7 +12,7 @@ namespace RecipeApplication
     
     class Ingredient
     {
-        //put getters and setters in place to populate varibales https://www.w3schools.com/cs/cs_properties.php
+        //put getters and setters in place to populate variables https://www.w3schools.com/cs/cs_properties.php
         public string Name { get; set; }
         public double OriginalQuantity { get; set; }
         public double NewQuantity { get; set; }
@@ -40,7 +40,9 @@ namespace RecipeApplication
 
         public void CreateRecipe()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter details for the recipe\n_____________________________________");
+            Console.ResetColor();
 
             Console.Write("Enter number of ingredients: ");
             int ingredientCount = int.Parse(Console.ReadLine());
@@ -52,7 +54,9 @@ namespace RecipeApplication
             for (int i = 0; i < ingredientCount; i++)
             //loops for the amount of ingredients that need to be entered https://stackoverflow.com/questions/230454/how-to-fill-an-array-from-user-input-c
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Enter ingredient details {i + 1}:");
+                Console.ResetColor();
                 Console.Write("Ingredient name: ");
                 string name = Console.ReadLine();
 
@@ -98,7 +102,9 @@ namespace RecipeApplication
             else
             {
                 //displays the recipe stored in the array
-                Console.WriteLine("\nRecipe details:");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("\nRecipe details\n_____________________________");
+                Console.ResetColor();
                 Console.WriteLine("Ingredients:");
                 foreach (var ingredient in ingredients)
                 {
@@ -117,8 +123,7 @@ namespace RecipeApplication
         }
 
         public void ScaleRecipe(double sAmount)
-        {
-            foreach (var ingredient in ingredients)
+        { 
             if (ingredients == null || ingredients.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -129,12 +134,14 @@ namespace RecipeApplication
             }
             else
             {
-                for (int i = 0;i < steps.Length; i++)
+                foreach (var ingredient in ingredients)
+                    //loops for the amount of ingredients there are to scale
+                    //https://stackoverflow.com/questions/2675196/c-sharp-method-to-scale-values
+                    for (int i = 0;i < steps.Length; i++)
                 {
-                   ingredient.OriginalQuantity *= sAmount;
-                        ingredient.NewQuantity = sAmount;
-
-                }
+                        ingredient.OriginalQuantity *= sAmount;
+                        ingredient.NewQuantity *= sAmount;
+                    }
 
 
                 //message to be displayed if the scale is successful 
@@ -231,6 +238,7 @@ namespace RecipeApplication
                     case "3":
                         Console.ForegroundColor = ConsoleColor.Blue;
                         //user can choose to scale by 0.5, 2, or 3
+                        //inquire about this
                         Console.WriteLine("Enter factor to scale recipe by:");
                         int sAmount = Convert.ToInt32(Console.ReadLine());
                         recipe.ScaleRecipe(sAmount);
