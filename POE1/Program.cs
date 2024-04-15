@@ -116,8 +116,9 @@ namespace RecipeApplication
             Console.ResetColor();
         }
 
-        public void ScaleRecipe()
+        public void ScaleRecipe(double sAmount)
         {
+            foreach (var ingredient in ingredients)
             if (ingredients == null || ingredients.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -126,45 +127,22 @@ namespace RecipeApplication
                 Console.ResetColor();
                 return;
             }
+            else
+            {
+                for (int i = 0;i < steps.Length; i++)
+                {
+                   ingredient.OriginalQuantity *= sAmount;
+                        ingredient.NewQuantity = sAmount;
 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            //user can choose to scale by 0.5, 2, or 3
-            Console.WriteLine("Enter factor to scale recipe by (0.5, 2, or 3): ");
-            double scaleAmount = double.Parse(Console.ReadLine());
-            Console.ResetColor();
-            //foreach is a loop which iterates through an array
-            //https://www.simplilearn.com/tutorials/asp-dot-net-tutorial/csharp-foreach#:~:text=A%20foreach%20loop%20is%20a%20famous%20structure%20in%20programming%20languages,on%20to%20the%20next%20one.
-            foreach (var ingredient in ingredients)
-            { //https://www.w3schools.com/cs/cs_conditions.php
-                //if user chooses to scale by 0.5
-                if (scaleAmount == 0.5)
-                {
-                    ingredient.NewQuantity = ingredient.OriginalQuantity * 0.5;
                 }
-                //if user chooses to scale by 2
-                else if (scaleAmount == 2)
-                {
-                    ingredient.NewQuantity = ingredient.OriginalQuantity * 2;
-                }
-                //if user chooses to scale by 3
-                else if (scaleAmount == 3)
-                {
-                    ingredient.NewQuantity = ingredient.OriginalQuantity * 3;
-                }
-                else
-                {
-                    //message to be displayed if an invalid factor is entered 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid scaling factor. Please enter 0.5, 2, or 3.");
-                    Console.ResetColor();
-                    return;
-                }
+
+
+                //message to be displayed if the scale is successful 
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Recipe scaled successfully.");
+                DisplayRecipe();
+                Console.ResetColor();
             }
-            //message to be displayed if the scale is successful 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Recipe scaled successfully.");
-            DisplayRecipe();
-            Console.ResetColor();
         }
 
         public void ResetQuantities()
@@ -251,7 +229,13 @@ namespace RecipeApplication
                         recipe.DisplayRecipe();
                         break;
                     case "3":
-                        recipe.ScaleRecipe();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        //user can choose to scale by 0.5, 2, or 3
+                        Console.WriteLine("Enter factor to scale recipe by:");
+                        int sAmount = Convert.ToInt32(Console.ReadLine());
+                        recipe.ScaleRecipe(sAmount);
+                        recipe.DisplayRecipe();
+                        Console.ResetColor();
                         break;
                     case "4":
                         recipe.ResetQuantities();
