@@ -6,6 +6,7 @@
  
 */
 using System;
+using System.Runtime.CompilerServices;
 
 namespace RecipeApplication
 {
@@ -40,11 +41,13 @@ namespace RecipeApplication
 
         public void CreateRecipe()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Enter details for the recipe\n_____________________________________");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Enter details for the recipe");
             Console.ResetColor();
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Enter number of ingredients: ");
+            Console.ResetColor();
             int ingredientCount = int.Parse(Console.ReadLine());
             //sets the number of elements to be stored in the arrays
             //https://stackoverflow.com/questions/230454/how-to-fill-an-array-from-user-input-c
@@ -60,10 +63,10 @@ namespace RecipeApplication
                 Console.Write("Ingredient name: ");
                 string name = Console.ReadLine();
 
-                Console.Write("Ingredient quantity: ");
+                Console.Write("Ingredient quantity (number only): ");
                 double quantity = double.Parse(Console.ReadLine());
 
-                Console.Write("Unit of measurement: ");
+                Console.Write("Unit of measurement (slice, teaspoon, etc): ");
                 string unit = Console.ReadLine();
                 //stores the captured data into the arrays
                 //https://stackoverflow.com/questions/6482331/how-to-add-different-types-of-objects-in-a-single-array-in-c
@@ -71,14 +74,18 @@ namespace RecipeApplication
                 originalIngredients[i] = new Ingredient { Name = name, OriginalQuantity = quantity, Unit = unit };
             }
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("Enter number of steps: ");
+            Console.ResetColor();
             int stepCount = int.Parse(Console.ReadLine());
             //sets the size of the array https://www.w3schools.com/cs/cs_properties.php
             steps = new RecipeStep[stepCount];
             //loops for the amount of steps that need to be entered https://www.w3schools.com/cs/cs_arrays_loop.php
             for (int i = 0; i < stepCount; i++)
             {
+                Console.ForegroundColor= ConsoleColor.Blue;
                 Console.Write($"Enter step {i + 1}: ");
+                Console.ResetColor();
                 string step = Console.ReadLine();
                 steps[i] = new RecipeStep { Steps = step };
             }
@@ -102,17 +109,22 @@ namespace RecipeApplication
             else
             {
                 //displays the recipe stored in the array
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("\nRecipe details\n_____________________________");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\nRecipe details");
                 Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Ingredients:");
+                Console.ResetColor();
                 foreach (var ingredient in ingredients)
                 {
                     //https://stackoverflow.com/questions/16265247/printing-all-contents-of-array-in-c-sharp
                     Console.WriteLine($"{ingredient.NewQuantity} {ingredient.Unit} of {ingredient.Name}");
                 }
                 //\n leaves a line when displaying the output
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\nSteps:");
+                Console.ResetColor();
                 for (int i = 0; i < steps.Length; i++)
                 {
                     Console.WriteLine($"{i + 1}. {steps[i].Steps}");
@@ -134,11 +146,9 @@ namespace RecipeApplication
             }
             else
             {
-                foreach (var ingredient in ingredients)
-                    //loops for the amount of ingredients there are to scale
+                foreach (var ingredient in ingredients) { 
                     //https://stackoverflow.com/questions/2675196/c-sharp-method-to-scale-values
-                    for (int i = 0;i < steps.Length; i++)
-                {
+                
                         ingredient.OriginalQuantity *= sAmount;
                         ingredient.NewQuantity *= sAmount;
                     }
@@ -191,14 +201,21 @@ namespace RecipeApplication
             }
             else
             {
-                //clears the arrays by making them 0
-                //https://www.tutorialspoint.com/How-do-you-empty-an-array-in-Chash
-                ingredients = new Ingredient[0];
-                steps = new RecipeStep[0];
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Recipe cleared.");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Are you sure you want to clear the recipe? (YES or NO)");
+                string userChoice = Console.ReadLine().ToUpper();
                 Console.ResetColor();
+                if (userChoice == "YES")
+                {
+                    //clears the arrays by making them 0
+                    //https://www.tutorialspoint.com/How-do-you-empty-an-array-in-Chash
+                    ingredients = new Ingredient[0];
+                    steps = new RecipeStep[0];
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Recipe cleared.");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -239,8 +256,8 @@ namespace RecipeApplication
                         Console.ForegroundColor = ConsoleColor.Blue;
                         //user can choose to scale by 0.5, 2, or 3
                         //inquire about this
-                        Console.WriteLine("Enter factor to scale recipe by:");
-                        int sAmount = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter factor to scale recipe by (0.5, 2, 3, etc):");
+                        double sAmount = Convert.ToDouble(Console.ReadLine());
                         recipe.ScaleRecipe(sAmount);
                         recipe.DisplayRecipe();
                         Console.ResetColor();
