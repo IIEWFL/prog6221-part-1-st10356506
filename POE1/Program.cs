@@ -3,10 +3,12 @@
  * call these methods in main method
  * use conditional or switch cases
  * use a menu-use part 3 2023 as a reference-welcome message
- 
+ * proper error handling
 */
 using System;
+using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using static System.Net.WebRequestMethods;
 
 namespace RecipeApplication
 {
@@ -116,6 +118,8 @@ namespace RecipeApplication
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Ingredients:");
                 Console.ResetColor();
+                //foreach iterates through the elements in the array
+                //https://www.simplilearn.com/tutorials/asp-dot-net-tutorial/csharp-foreach#:~:text=A%20foreach%20loop%20is%20a%20famous%20structure%20in%20programming%20languages,on%20to%20the%20next%20one.
                 foreach (var ingredient in ingredients)
                 {
                     //https://stackoverflow.com/questions/16265247/printing-all-contents-of-array-in-c-sharp
@@ -173,19 +177,28 @@ namespace RecipeApplication
                 return;
             }
             else
-            {
-                //loops for the number on quantities there are and resets them 
-                for (int i = 0; i < ingredients.Length; i++)
-                {
-                    //https://stackoverflow.com/questions/39495995/c-sharp-reset-an-array-to-its-initialized-values
-                    //https://www.codecademy.com/resources/docs/c-sharp/arrays/clear
-                    ingredients[i].NewQuantity = originalIngredients[i].OriginalQuantity;
-                }
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Quantities reset.");
-                DisplayRecipe();
+            { 
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Are you sure you want to reset quantities? (YES or NO)");
+                string userChoice = Console.ReadLine().ToUpper();
                 Console.ResetColor();
+                if (userChoice == "YES")
+                {
+                    for (int i = 0; i < ingredients.Length; i++)
+                  //https://stackoverflow.com/questions/39495995/c-sharp-reset-an-array-to-its-initialized-values
+                  //https://www.codecademy.com/resources/docs/c-sharp/arrays/clear
+                  ingredients[i].NewQuantity = originalIngredients[i].OriginalQuantity;
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Quantities reset.");
+                    Console.ResetColor();
+
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please enter yes or no");
+                }
             }
         }
 
@@ -216,7 +229,13 @@ namespace RecipeApplication
                     Console.WriteLine("Recipe cleared.");
                     Console.ResetColor();
                 }
+                else
+                {
+                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.WriteLine("Please enter yes or no");
+                }
             }
+            
         }
 
         static void Main(string[] args)
