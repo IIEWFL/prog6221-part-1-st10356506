@@ -194,11 +194,7 @@ namespace RecipeApplication
                     Console.ResetColor();
 
                 }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please enter yes or no");
-                }
+               
             }
         }
 
@@ -229,11 +225,7 @@ namespace RecipeApplication
                     Console.WriteLine("Recipe cleared.");
                     Console.ResetColor();
                 }
-                else
-                {
-                    Console.ForegroundColor= ConsoleColor.Red;
-                    Console.WriteLine("Please enter yes or no");
-                }
+                
             }
             
         }
@@ -297,6 +289,7 @@ namespace RecipeApplication
                         //error message if the user enters a number out of the 1-6 range
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option. Please select from options 1-6.");
+                        Console.ResetColor(); 
                         break;
                 }
                 //while(true) will keep the application looping until the user exits
